@@ -8,8 +8,8 @@ gcc hid-gadget-test.c -o /PiTap/bin/keyboardtype
 chmod 755 /PiTap/bin/keyboardtype
 chmod +x duckpi.sh
 
-chmod +x ATTACKMODE
-chmod +x QUACK
+chmod +x /PiTap/bin/ATTACKMODE
+chmod +x /PiTap/bin/QUACK
 
 # Setup payload permisson
 chmod +x /PiTap/bin/TEST_PAYLOAD
