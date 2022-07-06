@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -a $1 ]
+then
+	/PiTap/src/duckpi.sh $1
+else
+	echo $@ > /tmp/quacktmp
+	/PiTap/src/duckpi.sh /tmp/quacktmp
+fi
