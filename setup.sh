@@ -11,7 +11,21 @@ chmod +x duckpi.sh
 chmod +x /PiTap/bin/ATTACKMODE
 chmod +x /PiTap/bin/QUACK
 
-# Setup payload permisson
+# Setup storage
+mkdir /PiTap/mnt
+mkdir /PiTap/storage
+
+# Create a mass storage device that can be used for target machine
+dd if=/dev/zero of=/PiTap/storage/system.img bs=1M count=1024   # size 1 gb
+mkdosfs /PiTap/storage/system.img
+fatlabel /PiTap/storage/system.img PITAP
+
+# Mount the storage device
+mount -o loop /PiTap/storage/system.img /PiTap/mnt
+
+mkdir /PiTap/mnt/loot
+
+# Set payload permisson
 chmod +x /PiTap/bin/TEST_PAYLOAD
 
 # Make sure that gadgets can be used. Modules need to be loaded at boot time
