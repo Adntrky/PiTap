@@ -8,8 +8,5 @@ fi
 
 # Turn off capslock on target device if it's on
 QUACK GUI r
-QUACK STRING cmd
-QUACK ENTER
-QUACK DELAY 500
-QUACK STRING "start /b /wait powershell.exe -nologo -WindowStyle Hidden -sta -command \"IF ([console]::CapsLock -eq 'True'){$wsh = New-Object -ComObject WScript.Shell;$wsh.SendKeys('{CAPSLOCK}')}\""
+QUACK STRING "POWERSHELL.EXE -NOLOGO -wINDOWsTYLE hIDDEN -STA -COMMAND \"if ([CONSOLE]::cAPSlOCK -EQ 'tRUE'){\$WSH = nEW-oBJECT -cOMoBJECT wsCRIPT.sHELL;\$WSH.sENDkEYS('{capslock}')}\""
 QUACK ENTER
