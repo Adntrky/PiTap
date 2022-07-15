@@ -23,7 +23,7 @@ umount /PiTap/storage/system.img
 mount /PiTap/storage/system.img /PiTap/mnt
 mkdir -p /PiTap/loot
 mv /PiTap/mnt/DRIVE_LETTER /PiTap/loot
-umount /PiTap/
+umount /PiTap/mnt
 
 # Hide the drive
 drive=$(</PiTap/loot/DRIVE_LETTER)
