@@ -3,9 +3,8 @@
 # Initialize USB gadgets
 if [ ! -d "/sys/kernel/config/usb_gadget/g1" ]; then
     ATTACKMODE
+    sleep 5
 fi
-
-sleep 5
 
 # Get drive letter
 QUACK GUI r
