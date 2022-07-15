@@ -347,8 +347,14 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 
 	elif [ "$cmd" == "ALT-SHIFT" ] 
 	then
-		last_cmd="left-shift left-alt"
-		echo "$last_cmd" | $hidcmd $kb > /dev/null
+		if [ "$info" == "TAB" ]
+		then
+			last_cmd="left-shift left-alt ${info,,}"
+			echo "$last_cmd" | $hidcmd $kb > /dev/null
+		else
+			last_cmd="left-shift left-alt"
+			echo "$last_cmd" | $hidcmd $kb > /dev/null
+		fi
 
 	elif [ "$cmd" == "CTRL-ALT" ] 
 	then

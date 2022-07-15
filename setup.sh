@@ -10,6 +10,8 @@ chmod +x duckpi.sh
 
 chmod +x /PiTap/bin/ATTACKMODE
 chmod +x /PiTap/bin/QUACK
+chmod +x /PiTap/bin/CAPSLOCK
+chmod +x /PiTap/bin/HIDE
 
 # Setup storage
 mkdir /PiTap/mnt

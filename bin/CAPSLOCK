@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Initialize USB gadgets
+if [ ! -d "/sys/kernel/config/usb_gadget/g1" ]; then
+    ATTACKMODE
+fi
+
+# Turn off capslock on target device if it's on
+QUACK GUI r
+QUACK STRING cmd
+QUACK ENTER
+QUACK DELAY 500
+QUACK STRING "start /b /wait powershell.exe -nologo -WindowStyle Hidden -sta -command \"IF ([console]::CapsLock -eq 'True'){$wsh = New-Object -ComObject WScript.Shell;$wsh.SendKeys('{CAPSLOCK}')}\""
+QUACK ENTER
